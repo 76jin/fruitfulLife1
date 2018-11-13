@@ -1,7 +1,12 @@
 package kr.fruitful.life.config;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 /**
  * Created by ranian129@gmail.com on 2018. 11. 12.
@@ -11,4 +16,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = { "kr.fruitful.life" })
 public class RootConfig {
+
+    @Bean
+    public DataSource dataSource() {
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+        hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:XE");
+        hikariConfig.setUsername("id");
+        hikariConfig.setPassword("pw");
+
+        HikariDataSource dataSource = new HikariDataSource(hikariConfig);
+
+        return dataSource;
+    }
+
 }

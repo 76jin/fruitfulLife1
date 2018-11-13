@@ -1,3 +1,5 @@
+package kr.fruitful.life.basic;
+
 import kr.fruitful.life.config.RootConfig;
 import lombok.extern.log4j.Log4j;
 import org.junit.Test;
