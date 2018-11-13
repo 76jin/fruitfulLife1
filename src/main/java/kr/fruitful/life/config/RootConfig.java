@@ -1,5 +1,6 @@
 package kr.fruitful.life.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -8,5 +9,6 @@ import org.springframework.context.annotation.Configuration;
  * Github : http://github.com/76jin
  */
 @Configuration
+@ComponentScan(basePackages = { "kr.fruitful.life" })
 public class RootConfig {
 }
