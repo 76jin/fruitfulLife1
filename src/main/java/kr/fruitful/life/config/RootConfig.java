@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackages = { "kr.fruitful.life" })
+@MapperScan(basePackages = {"kr.fruitful.life.basic.mapper"})
 public class RootConfig {
 
     @Bean
@@ -27,16 +29,14 @@ public class RootConfig {
         hikariConfig.setUsername("id");
         hikariConfig.setPassword("pw");
 
-        HikariDataSource dataSource = new HikariDataSource(hikariConfig);
-
-        return dataSource;
+        return new HikariDataSource(hikariConfig);
     }
 
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
-        return (SqlSessionFactory) sqlSessionFactoryBean.getObject();
+        return sqlSessionFactoryBean.getObject();
     }
 
 }
