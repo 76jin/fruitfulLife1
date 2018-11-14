@@ -19,7 +19,10 @@ import java.io.IOException;
  * Github : http://github.com/76jin
  */
 @EnableWebMvc
-@ComponentScan(basePackages = {"kr.fruitful.life.basic.controller"})
+@ComponentScan(basePackages = {
+        "kr.fruitful.life.basic.controller",
+        "kr.fruitful.life.basic.exception"
+})
 public class ServletConfig implements WebMvcConfigurer {
 
     public static final int SIZE_1MB = 1024 * 1024;
